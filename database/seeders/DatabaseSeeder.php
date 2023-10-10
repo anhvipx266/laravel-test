@@ -26,5 +26,9 @@ class DatabaseSeeder extends Seeder
             ['id' => 8, 'name' => 'Đồng hồ', 'status' => 1]
 
         ]);
+        DB::table('products')->insert([
+            ['id' => 1, 'name' => 'Áo vest Nam', 'price' => 1000000,'sale_price'=>900000,'image'=>'','category_id'=>1,'content'=>"content"],
+            ['id' => 2, 'name' => 'Áo vest Nữ', 'price' => 1000000.0,'sale_price'=>900000.0,'image'=>'','category_id'=>1,'content'=>""],
+        ]);
     }
 }
