@@ -28,7 +28,13 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('products')->insert([
             ['id' => 1, 'name' => 'Áo vest Nam', 'price' => 1000000,'sale_price'=>900000,'image'=>'','category_id'=>1,'content'=>"content"],
-            ['id' => 2, 'name' => 'Áo vest Nữ', 'price' => 1000000.0,'sale_price'=>900000.0,'image'=>'','category_id'=>1,'content'=>""],
+            ['id' => 2, 'name' => 'Áo vest Nữ', 'price' => 800000,'sale_price'=>0,'image'=>'','category_id'=>2,'content'=>""],
+            ['id' => 3, 'name' => 'Quần jean', 'price' => 800000,'sale_price'=>0,'image'=>'','category_id'=>1,'content'=>""],
+            ['id' => 4, 'name' => 'Váy dài', 'price' => 800000,'sale_price'=>0,'image'=>'','category_id'=>1,'content'=>""],
+            ['id' => 5, 'name' => 'Iron suit', 'price' => 10000000,'sale_price'=>0,'image'=>'','category_id'=>1,'content'=>""],
+            ['id' => 6, 'name' => 'Đồng hồ Rolex', 'price' => 800000,'sale_price'=>0,'image'=>'','category_id'=>6,'content'=>""],
+
+
         ]);
     }
 }
