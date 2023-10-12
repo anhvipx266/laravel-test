@@ -31,5 +31,28 @@ class HomeController extends Controller
         // nếu Các ràng buộc đã hợp lệ, thì xử lý tiếp
         $req->validate($rules, $message);
     }
-
+    public function upload()
+    {
+        return view('upload');
+    }
+    public function handle_upload(Request $req)
+    {
+        // Khai báo các quy ràng buộc xác thực
+        $rules = [
+            // CHỉ cho phép chọn file có định dạng: jpg,jpeg,png,gif
+            'image' => 'required|mimes:jpg,jpeg,png,gif',
+        ];
+        // customize các tin nhắn
+        $message = [
+            'image.required' => 'Vui lòng chọn ảnh',
+            'image.mimes' => 'Định dạng file cho phép là: jpg,jpeg,png,gif '
+        ];
+        // nếu Các ràng buộc đã hợp lệ, thì xử lý tiếp
+        $req->validate($rules, $message);
+        $ext = $req->image->extension();
+        $file_name = time() . '.' . $ext;
+        // dd (public_path('uploads'));
+        // upload vào thư mục public/uploads
+        $req->image->move(public_path('uploads'), $file_name);
+    }
 }
