@@ -19,11 +19,21 @@ class ProductController extends Controller
             ->select('products.*', 'categories.name as category_name')
             ->join('categories', 'categories.id', '=', 'products.category_id');
         // neeus cos request sawps xeeps theo orrder
-        $order = $req->order ? $req->order : ''; 
+        $order = $req->order ? $req->order : '';
         if ($req->order) {
             $_order = explode('-', $req->order); // chuyển về mảng ['name','ASC']
             $query = $query->orderBy($_order[0], $_order[1]);
         }
+
+        $totalRow = DB::table('products')->count('id');
+        if ($req->name) {
+            // nếu có thông tin name được gửi lên, tìm kiếm với LIKE
+            $query = $query->where('products.name', 'LIKE', '%' . $req->name . '%');
+            // Tính lại totalRow
+            $totalRow = DB::table('products')->where('products.name', 'LIKE', '%' . $req->name . '%')
+                ->count('id');
+        }
+
         $products = $query->limit($limit)->offset($offset)->get(); // danh sách dữ liệu sản phẩm
         // $products = DB::table('products')
         //     ->select('products.*', 'categories.name as category_name')
@@ -37,7 +47,7 @@ class ProductController extends Controller
         // trả dữ liệu về cho views/product.blade.php
         return view(
             'product',
-            compact('products', 'totalRow', 'totalPrice', 'maxPrice', 'minPrice', 'totlPage','order')
+            compact('products', 'totalRow', 'totalPrice', 'maxPrice', 'minPrice', 'totlPage', 'order')
         );
     }
 }
