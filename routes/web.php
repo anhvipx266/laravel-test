@@ -16,4 +16,10 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+
+// route sẽ hiển thị form login
+Route::get('login', [HomeController::class, 'login'])->name('home.login');
+// route này validate dữ liệu khi submit form
+Route::post('login', [HomeController::class, 'check_login']);
+
 Route::get('/product', [ProductController::class, 'index'])->name('product.index');
