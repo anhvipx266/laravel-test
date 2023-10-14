@@ -1,0 +1,33 @@
+Bài 1:
+Tạo database laravel_bdk
+Tạo các bảng:
+CREATE TABLE laravel_bdk.student (
+	id int auto_increment NOT NULL,
+	name varchar(100) NOT NULL,
+	age int NOT NULL,
+	address varchar(500) NULL,
+	class_room_id int NULL,
+	status tinyint DEFAULT 1 NOT NULL, -- 1 vẫn đang học, 0 đã nghỉ
+	CONSTRAINT student_pk PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE laravel.class_room (
+	id int auto_increment NOT NULL,
+	class_name varchar(100) NOT NULL,
+	status tinyint DEFAULT 1 NOT NULL,
+	CONSTRAINT class_room_pk PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_general_ci;
+
+1. Thực hiện config kết nối database
+2. Tạo route get-list-student thực hiện chức năng hiển thị danh sách sinh viên
+3. Tạo route student-info thực hiện chức năng hiển thị thông tin chi tiết của sinh viên(Tên, Tuổi, Địa chỉ, Tên lớp, Trạng thái(hiển thị text: vẫn đang học hoặc đã nghỉ)));
+4. Tạo route update-student-info thực hiện chức năng gửi lên form thông tin của sinh viên và lưu cập nhật vào trong database(validate dữ liệu name:required, age:required, address:required, class_room_id:required)
+
+Lưu ý:
+Nộp bài nén lại project thành file .rar theo mẫu SO6704_TenSinhVien
